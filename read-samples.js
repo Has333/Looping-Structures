@@ -15,11 +15,16 @@ let totalRats    = 0;
 let totalGuinea  = 0;
 
 function calculateGuinea(){
-  for (let i = 0; i < experiments.length; i++){
-    if (experiments[i].code == 1) totalRabbits += experiments[i].value;
-    if (experiments[i].code == 2) totalRats    += experiments[i].value; 
-  } totalGuinea = totalRabbits + totalRats;
-
+  experiments.forEach(
+    (experiment) => {
+      if(experiment.code == 1){
+        totalRabbits += experiment.value
+        return
+      }
+      totalRats += experiment.value
+    }
+  )
+  totalGuinea += totalRabbits + totalRats
   console.log(`
   Rabbits: ${totalRabbits} (${ratio(totalRabbits, totalGuinea)}%)
   Rats:    ${totalRats} (${ratio(totalRats, totalGuinea)}%)
